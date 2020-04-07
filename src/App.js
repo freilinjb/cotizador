@@ -45,7 +45,11 @@ function App() {
        
         {/* { datos ? <Resumen/> : null } //Es una forma la otra es usando state*/ }
         <Resumen datos={datos}/>
-        <Resultado cotizacion={cotizacion}/>
+
+        {/* Ternario */}
+        {!cargando ?<Resultado cotizacion={cotizacion}/> : null }
+
+        
       </ContenedorFormulario>
     </Contenedor>
 
