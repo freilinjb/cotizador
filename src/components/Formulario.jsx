@@ -13,7 +13,7 @@ const Error = styled.div`
     margin-bottom:2rem;
 `;
 
-const Formulario = ({setResumen}) => {
+const Formulario = ({setResumen, guardarCargando}) => {
 
     const [ datos, setDatos ] = useState({
         marca:'',
@@ -49,7 +49,6 @@ const Formulario = ({setResumen}) => {
 
         //obtener la diferencia de anios
         const diferencia = obtenerDiferenciaYear(anio);
-        console.log(diferencia);
         
 
         //por cada anio que resta el 3%
@@ -60,20 +59,27 @@ const Formulario = ({setResumen}) => {
         //Asiatico 5%
         //Europeo 30%
         resultado = calcularMarca(marca) * resultado;
-        console.log(`resultado: ${resultado}`);
 
         //Basico aumenta 20%
         //Completo 50%
         const incrementoPlan = obtenerPlan(plan);
-        console.log(`IncrementoPlan: ${incrementoPlan}`);
         resultado = parseFloat(resultado * incrementoPlan).toFixed(2);
 
-        console.log(`resultado: ${resultado}`);
+        //MUESTRA EL SPINNER
+        guardarCargando(true);
 
-        setResumen({
-            cotizacion: resultado,
-            datos
-        }); 
+        setTimeout(() => {
+        //ELIMINA EL SPINNER
+        guardarCargando(false);
+
+        //PASA LA INFORMACION AL  COMPONENTE
+            setResumen({
+                cotizacion: resultado,
+                datos
+            }); 
+        }, 3000);
+
+
 
     }
 

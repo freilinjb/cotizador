@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Formulario from './components/Formulario';
 import Resumen from './components/Resumen';
 import Resultado from './components/Resultado';
+import Spinner from './components/Spinner';
 import './App.css';
 
 const Contenedor = styled.div`
@@ -27,6 +28,8 @@ function App() {
     }
   });
 
+  const [cargando, guardarCargando] = useState(false);
+
   //extraer datos
   const { datos, cotizacion } = resumen;
   console.log(`Cotlizacion: ${cotizacion}`);
@@ -36,7 +39,10 @@ function App() {
     <Contenedor>
       <Header titulo = "Cotizador de seguros"/>
       <ContenedorFormulario>
-        <Formulario setResumen={setResumen}/>
+        <Formulario setResumen={setResumen} guardarCargando={guardarCargando} />
+
+        {cargando ?  <Spinner/> : null}
+       
         {/* { datos ? <Resumen/> : null } //Es una forma la otra es usando state*/ }
         <Resumen datos={datos}/>
         <Resultado cotizacion={cotizacion}/>
