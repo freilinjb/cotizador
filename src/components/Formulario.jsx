@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import {obtenerDiferenciaYear, calcularMarca, obtenerPlan} from '../helper';
 
 
+
 const Error = styled.div`
     background-color:red;
     color:white;
@@ -12,7 +13,7 @@ const Error = styled.div`
     margin-bottom:2rem;
 `;
 
-const Formulario = () => {
+const Formulario = ({setResumen}) => {
 
     const [ datos, setDatos ] = useState({
         marca:'',
@@ -69,7 +70,10 @@ const Formulario = () => {
 
         console.log(`resultado: ${resultado}`);
 
-        
+        setResumen({
+            cotizacion: resultado,
+            datos
+        }); 
 
     }
 
