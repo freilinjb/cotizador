@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import Header from './components/Header';
 import Formulario from './components/Formulario';
 import Resumen from './components/Resumen';
+import Resultado from './components/Resultado';
 import './App.css';
 
 const Contenedor = styled.div`
@@ -27,7 +28,9 @@ function App() {
   });
 
   //extraer datos
-  const { datos } = resumen;
+  const { datos, cotizacion } = resumen;
+  console.log(`Cotlizacion: ${cotizacion}`);
+  
 
   return ( 
     <Contenedor>
@@ -36,6 +39,7 @@ function App() {
         <Formulario setResumen={setResumen}/>
         {/* { datos ? <Resumen/> : null } //Es una forma la otra es usando state*/ }
         <Resumen datos={datos}/>
+        <Resultado cotizacion={cotizacion}/>
       </ContenedorFormulario>
     </Contenedor>
 
