@@ -1,6 +1,15 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 
+const Error = styled.div`
+    background-color:red;
+    color:white;
+    padding: 1rem;
+    width:100%;
+    text-align: center;
+    margin-bottom:2rem;
+`;
+
 const Formulario = () => {
 
     const [ datos, setDatos ] = useState({
@@ -8,6 +17,8 @@ const Formulario = () => {
         anio:'',
         plan:'basico'
     });
+
+    const [ error, setError] = useState(false)
 
     const { marca, anio, plan } = datos;
 
@@ -19,8 +30,34 @@ const Formulario = () => {
         })
     }
 
+    //Cuando el suario presione submit
+    const cotizarSeguro = e =>{
+        e.preventDefault();
+
+        if(marca.trim() === '' || anio.trim() === '' ||plan.trim() === '') {
+            setError(true);
+            return;
+        }
+
+        setError(false);
+
+        //obtener la diferencia de anios
+
+        //por cada anio que resta el 3%
+
+        //Americano 15%
+        //Asiatico 5%
+        //Europeo 30%
+
+        //Basico aumenta 20%
+        //Completo 50%
+    }
+
     return ( 
-        <form>
+        <form onSubmit={cotizarSeguro}>
+
+            { error ? <Error>Todos los campos son obligatorios</Error> : null}
+
             <div className="form-group">
                 <label htmlFor="marca">Marca</label>
                 <select className="form-control" name="marca" value={marca} onChange={obtenerInformacion}>
@@ -55,6 +92,7 @@ const Formulario = () => {
                 <input className="form-check-input" type="radio" name="plan" id="completo" value="completo" checked={plan === "completo"} onChange={obtenerInformacion}/>
                 <label className="form-check-label" htmlFor="completo">Completo</label>
             </div>
+            <button type="submit" className="btn btn-block btn-primary">Cotizar</button>
         </form>
      );
 }
