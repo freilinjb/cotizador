@@ -1,11 +1,10 @@
 import React from 'react';
+import Header from './components/Header';
 import './App.css';
 
 function App() {
   return (
-   <header>
-     <h1>Cotizador</h1> 
-   </header>
+      <Header titulo = "Cotizador de seguros"/>
   );
 }
 
