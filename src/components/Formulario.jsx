@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
+import {obtenerDiferenciaYear} from '../helper';
+
 
 const Error = styled.div`
     background-color:red;
@@ -41,9 +43,18 @@ const Formulario = () => {
 
         setError(false);
 
+        //una base de 2000
+        let resultado = 2000;
+
         //obtener la diferencia de anios
+        const diferencia = obtenerDiferenciaYear(anio);
+        console.log(diferencia);
+        
 
         //por cada anio que resta el 3%
+        resultado -= (( diferencia * 3) * resultado) / 100;
+        console.log(`resultado: ${resultado}`);
+        
 
         //Americano 15%
         //Asiatico 5%
