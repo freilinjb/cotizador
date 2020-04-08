@@ -1,5 +1,6 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 
 const Resumen = ({datos}) => {
 
@@ -24,17 +25,20 @@ const Resumen = ({datos}) => {
 
     //evita que esto se ejecute
     return ( 
-        <Fragment>
-            <ResumenCotizacion>
-                <h2>Resumen de cotizacion</h2>
-                <Ul>
-                    <li>Marca: {marca}</li>
-                    <li>Plan: {plan}</li>
-                    <li>Año del auto: {anio}</li>
-                </Ul>
-            </ResumenCotizacion>
-        </Fragment>
+        <ResumenCotizacion>
+            <h2>Resumen de cotizacion</h2>
+            <Ul>
+                <li>Marca: {marca}</li>
+                <li>Plan: {plan}</li>
+                <li>Año del auto: {anio}</li>
+            </Ul>
+        </ResumenCotizacion>
      );
 }
+
+Resumen.propTypes = {
+    datos: PropTypes.object.isRequired
+}
+
  
 export default Resumen;
