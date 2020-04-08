@@ -34,7 +34,7 @@ const Resultado = ({cotizacion}) => {
     : 
         ( 
             <ResultadoCotizacion>
-                <TransitionGroup component="p" className="resultado">
+                <TransitionGroup component="span" className="resultado">
                     <CSSTransition
                         classNames="resultado"
                         key={cotizacion}
